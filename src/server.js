@@ -65,6 +65,14 @@ app.post('/register', (req, res) => {
   res.json(database.users[database.users.length - 1])
 })
 
+// === UPDATE USER'S SCORE ===
+// === NEEDS REFACTORING ===
+// === POSSIBLE FROM COOKIES? ===
+// === PUSH UPDATED SCORE TO DB ===
+app.put('/score/:userId', (req, res) => {
+  res.json(`Got a PUT request at ${req.params.userId}`)
+})
+
 app.listen(3000, () => {
   console.log('App is running on port 3000')
 })
