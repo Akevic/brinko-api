@@ -26,10 +26,12 @@ const database = {
   ]
 }
 
+// === SEND ALL USERS ===
 app.get('/', (req, res) => {
   res.send(database.users)
 })
 
+// === CHECK IF USER'S EMAIL AND PASSWORD MATCH ===
 app.post('/signin', (req, res) => {
   if (req.body.email === database.users[0].email && req.body.password === database.users[0].password) {
     res.json('success')
@@ -38,6 +40,7 @@ app.post('/signin', (req, res) => {
   }
 })
 
+// === SEARCHING USER? NOT SURE YET MIGHT BE USEFUL ===
 app.get('/profile/:userId', (req, res) => {
   for (let i = 0; i <= database.users.length; i++) {
     if (database.users[i].id === req.params.userId) {
@@ -48,6 +51,7 @@ app.get('/profile/:userId', (req, res) => {
   }
 })
 
+// === REGISTER NEW USER ===
 app.post('/register', (req, res) => {
   const { email, name, password } = req.body
   database.users.push({
@@ -64,11 +68,3 @@ app.post('/register', (req, res) => {
 app.listen(3000, () => {
   console.log('App is running on port 3000')
 })
-
-/*
-/ --> res = this is working
-/signing --> POST = succes/fail
-/register --> POST = new user object
-/profile/:userId --> GET = user by id
-/image --> PUT = updated user
-*/
